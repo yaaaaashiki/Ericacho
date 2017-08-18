@@ -33,6 +33,7 @@ func Init(funcs slim.Funcs) {
 	executor = CachedTemplateExecutor{
 		Template: templates,
 	}
+	fmt.Println("----------------------------------------")
 }
 
 type TemplateExecutor interface {
@@ -52,12 +53,14 @@ func (e CachedTemplateExecutor) Execute(w io.Writer, name string, data interface
 }
 
 func Execute(w io.Writer, name string, data map[string]interface{}) error {
+	fmt.Println("----------------------------------------")
 	return executor.Execute(w, name, data)
 }
 
 // HTML render view
 func HTML(w http.ResponseWriter, status int, name string, data map[string]interface{}) error {
 	w.WriteHeader(status)
+	fmt.Println("----------------------------------------")
 	return executor.Execute(w, name, data)
 }
 

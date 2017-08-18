@@ -5,6 +5,7 @@ import (
 	"html/template"
 	"io"
 	"log"
+	"os"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
@@ -28,9 +29,9 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
-func hoge(string) (string, error) {
+func Yashiki(who ...string) (string, error) {
 	err := errors.New("hogehoegkj")
-	return "yashiki", err
+	return who[0], err
 }
 
 func main() {
@@ -43,9 +44,25 @@ func main() {
 		templates: template.Must(template.ParseGlob("templates/*.slim")),
 	}
 	e.Renderer = renderer
+	fs := make(map[string]slim.Func)
 
-	fs := map[string]slim.Func{}
+	//	hoge := []string{"世界", "日本"}
+	/*
+		fs := map[string]slim.Func {
+			"add": func([]string{"世界", "日本"}){ return "a", nil},
+			"sub": func([]string{"世界", "日本"}){ return "b", nil},
+		}
+	*/
+	//fmt.Println(hoge)
+
+	commits := map[string]interface{}{
+		"rsc": 3711,
+		"r":   2138,
+		"gri": 1908,
+		"adg": 912,
+	}
 	view.Init(fs)
+	view.Execute(os.Stdout, "/Users/Soichiro/go/src/github.com/yaaaaashiki/Ericacho/templates/something.slim", commits)
 
 	e.GET("/", handler.RenderRoot())
 
