@@ -234,3 +234,5 @@ temp.html
 
 #pdfminer
 vendor/pdfminer3k-master
+
+*.idea
