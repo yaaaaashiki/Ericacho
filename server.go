@@ -23,14 +23,10 @@ func main() {
 	})
 
 	db := db.GormConnect()
-	// 構造体のインスタンス化
 	user := &model.User{}
-	// IDの指定
 	user.Id = 1
-	// 指定したIDを元にレコードを１つ引っ張ってくる
 	db.First(user)
 	console.log(user)
 
-	// Start server
 	e.Logger.Fatal(e.Start(":8080"))
 }
