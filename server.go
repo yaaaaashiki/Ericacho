@@ -1,6 +1,7 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -24,9 +25,10 @@ func main() {
 
 	db := db.GormConnect()
 	user := &model.User{}
-	user.Id = 1
 	db.First(user)
-	console.log(user)
+	log.Printf("----------------------------------------")
+	log.Println(user.Name)
+	log.Printf("----------------------------------------")
 
 	e.Logger.Fatal(e.Start(":8080"))
 }

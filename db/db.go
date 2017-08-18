@@ -5,14 +5,15 @@ import (
 	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
-func GormConnect() *gorm.DB {
-	DBMS = "mysql"
-	USER = "root"
-	PASS = ""
-	//PROTOCOL = "tcp(##.###.##.###:3306)"
-	DBNAME = "user"
+const (
+	DBMS   = "mysql"
+	USER   = "root"
+	PASS   = ""
+	DBNAME = "ericacho"
+)
 
-	CONNECT = USER + ":" + PASS + "@" + "/" + erikachan
+func GormConnect() *gorm.DB {
+	CONNECT := USER + ":" + PASS + "@" + "/" + DBNAME
 	db, err := gorm.Open(DBMS, CONNECT)
 
 	if err != nil {
