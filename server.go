@@ -47,9 +47,7 @@ func main() {
 	db := db.GormConnect()
 	user := &model.User{}
 	db.First(user)
-	log.Printf("----------------------------------------")
 	log.Println(user.Name)
-	log.Printf("----------------------------------------")
 
 	// Route
 	e.GET("/hello", handler.MainPage())
