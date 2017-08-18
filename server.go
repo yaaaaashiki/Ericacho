@@ -1,16 +1,17 @@
 package main
 
 import (
+	"errors"
 	"html/template"
 	"io"
 	"log"
-	"net/http"
 
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
-	"github.com/yaaaaashiki/Ericacho/db"
+	slim "github.com/mattn/go-slim"
+	"github.com/yaaaaashiki/Ericacho/controller"
 	"github.com/yaaaaashiki/Ericacho/handler"
-	"github.com/yaaaaashiki/Ericacho/model"
+	"github.com/yaaaaashiki/Ericacho/view"
 )
 
 type Template struct {
@@ -27,30 +28,27 @@ func (t *Template) Render(w io.Writer, name string, data interface{}, c echo.Con
 	return t.templates.ExecuteTemplate(w, name, data)
 }
 
+func hoge(string) (string, error) {
+	err := errors.New("hogehoegkj")
+	return "yashiki", err
+}
+
 func main() {
-	// Echo instance
 	e := echo.New()
 
-	// Middleware
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
 	renderer := &Template{
-		templates: template.Must(template.ParseGlob("templates/*.html")),
+		templates: template.Must(template.ParseGlob("templates/*.slim")),
 	}
 	e.Renderer = renderer
 
-	e.GET("/something", func(c echo.Context) error {
-		return c.Render(http.StatusOK, "something.html", map[string]interface{}{})
-	}).Name = "foobar"
+	fs := map[string]slim.Func{}
+	view.Init(fs)
 
-	db := db.GormConnect()
-	user := &model.User{}
-	db.First(user)
-	log.Println(user.Name)
+	e.GET("/", handler.RenderRoot())
 
-	// Route
-	e.GET("/hello", handler.MainPage())
-
+	log.Println(controller.GetFirstUser())
 	e.Logger.Fatal(e.Start(":8080"))
 }
