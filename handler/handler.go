@@ -23,5 +23,7 @@ func RenderRoot(c echo.Context) error {
 		"foo": hogehoge,
 	}
 
+	defer db.Close()
+
 	return view.Slim(c, http.StatusOK, "something.slim", huge)
 }
