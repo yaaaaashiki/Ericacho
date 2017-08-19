@@ -1,14 +1,24 @@
 package handler
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/labstack/echo"
+	"github.com/oldsuzuken/model"
+	"github.com/yaaaaashiki/Ericacho/db"
 	"github.com/yaaaaashiki/Ericacho/view"
 )
 
 func RenderRoot(c echo.Context) error {
-	hogehoge := []string{"foo", "bar", "baz", "hogehoge", "kjfdjkj"}
+
+	db := db.GormConnect()
+	user := &model.User{}
+	db.First(user)
+	log.Println(user.Name)
+
+	hogehoge := []string{}
+	hogehoge = append(hogehoge, user.Name)
 	huge := map[string]interface{}{
 		"foo": hogehoge,
 	}

@@ -1,1 +1,5 @@
 # Ericacho
+
+- echo
+- gorm
+- slim
