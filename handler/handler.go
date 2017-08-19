@@ -5,8 +5,8 @@ import (
 	"net/http"
 
 	"github.com/labstack/echo"
-	"github.com/oldsuzuken/model"
 	"github.com/yaaaaashiki/Ericacho/db"
+	"github.com/yaaaaashiki/Ericacho/model"
 	"github.com/yaaaaashiki/Ericacho/view"
 )
 
@@ -25,5 +25,5 @@ func RenderRoot(c echo.Context) error {
 
 	defer db.Close()
 
-	return view.Slim(c, http.StatusOK, "something.slim", huge)
+	return view.Slim(c, http.StatusOK, "root.slim", huge)
 }

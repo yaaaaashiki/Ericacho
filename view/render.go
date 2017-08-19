@@ -47,7 +47,9 @@ func Slim(c echo.Context, stCode int, name string, data map[string]interface{}) 
 		return err
 	}
 
-	if err = tmpl.Execute(c.Response().Writer, data); err != nil {
+	err = tmpl.Execute(c.Response().Writer, data)
+
+	if err != nil {
 		return err
 	}
 	c.Response().WriteHeader(stCode)
