@@ -15,12 +15,7 @@ func (u *User) RenderSessionNew(c echo.Context) error {
 	if err != nil {
 		log.Fatal(err)
 	}
-	/*
-		db := db.GormConnect()
-		user := &model.User{}
-		db.First(user)
-		log.Println(user.Name)
-	*/
+
 	huge := map[string]interface{}{
 		"names": users,
 	}

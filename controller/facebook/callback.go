@@ -3,17 +3,13 @@ package controllersFacebook
 import (
 	"errors"
 
-	"github.com/yaaaaashiki/Ericacho/lib/facebook"
+	"github.com/yaaaaashiki/Ericacho/facebook"
 
-	"github.com/astaxie/beego"
+	"fmt"
+
 	fb "github.com/huandu/facebook"
 	"golang.org/x/oauth2"
 )
-
-// CallbackController コールバックコントローラ
-type CallbackController struct {
-	beego.Controller
-}
 
 // CallbackRequest コールバックリクエスト
 type CallbackRequest struct {
@@ -28,6 +24,7 @@ func (c *CallbackController) Get() {
 		panic(err)
 	}
 
+	fmt.Print("hogehogew")
 	config := facebook.GetConnect()
 
 	tok, err := config.Exchange(oauth2.NoContext, request.Code)

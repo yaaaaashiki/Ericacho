@@ -1,6 +1,7 @@
 package facebook
 
 import (
+	"fmt"
 	"os"
 
 	"golang.org/x/oauth2"
@@ -23,6 +24,8 @@ func GetConnect() *oauth2.Config {
 		Scopes:      []string{"email"},
 		RedirectURL: "http://localhost:8080/facebook/callback",
 	}
+
+	fmt.Println(config)
 
 	return config
 }

@@ -1,21 +1,21 @@
 package controllersFacebook
 
 import (
-	"github.com/yaaaaashiki/Ericacho/lib/facebook"
+	"net/http"
 
-	"github.com/astaxie/beego"
+	"github.com/labstack/echo"
+	"github.com/yaaaaashiki/Ericacho/facebook"
 )
 
-// Oauth2Controller Oauth2コントローラー
-type Oauth2Controller struct {
-	beego.Controller
-}
-
-// Get 認証する
-func (c *Oauth2Controller) Get() {
+func RenderFacebook(c echo.Context) error {
 	config := facebook.GetConnect()
 
 	url := config.AuthCodeURL("")
+	RedirectHandler(url)
 
-	c.Redirect(url, 302)
+	return nil
+}
+
+func RedirectHandler(w http.ResponseWriter, r *http.Request, url string) {
+	http.Redirect(w, r, url, 301)
 }
