@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"errors"
 	"fmt"
 	"log"
 	"net/http"
@@ -9,6 +10,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/suzuken/wiki/sessions"
 	"github.com/yaaaaashiki/Ericacho/crypto"
+	"github.com/yaaaaashiki/Ericacho/mail"
 	"github.com/yaaaaashiki/Ericacho/model"
 	"github.com/yaaaaashiki/Ericacho/view"
 )
@@ -46,15 +48,18 @@ func (u *User) NewUser(c echo.Context) error {
 }
 
 func (u *User) Index(c echo.Context) error {
-	//sess, _ := sessions.Get(r, "user")
-	//fmt.Println(sess.Values["name"])
-
 	r := c.Request()
 	sess, _ := sessions.Get(r, "user")
 	fmt.Println(sess.Values["name"])
 
 	emptyData := map[string]interface{}{
 		"user": sess.Values["name"],
+	}
+
+	if addr, isString := sess.Values["email"].(string); isString {
+		go mail.InfiniteMail(addr)
+	} else {
+		errors.New("This input is not email address")
 	}
 
 	return view.Slim(c, http.StatusOK, "users/index.slim", emptyData)

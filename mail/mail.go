@@ -4,36 +4,15 @@ import (
 	"log"
 	"net/smtp"
 	"os"
+	"time"
 
 	"github.com/joho/godotenv"
 )
 
 const (
-	SubTitle = "Ericacho 通知です!!!!!!"
+	SubTitle  = "Ericacho からの通知です!!!!!!"
+	PerMinute = 60
 )
-
-func Env_load() {
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Error loading .env file")
-	}
-}
-
-func main() {
-	Env_load()
-	m := Mail{
-		From:     os.Getenv("USERNAME"),
-		Username: os.Getenv("USERNAME"),
-		Password: os.Getenv("PASSWORD"),
-		To:       "yaaaaakishi@gmail.com",
-		Sub:      SubTitle,
-		Msg:      "本文insert",
-	}
-
-	if err := GmailSend(m); err != nil {
-		log.Println(err)
-	}
-}
 
 type Mail struct {
 	From     string
@@ -44,6 +23,28 @@ type Mail struct {
 	Msg      string
 }
 
+func Env_load() {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+}
+
+func SendMail(toAddress string) {
+	Env_load()
+	m := Mail{
+		From:     os.Getenv("USERNAME"),
+		Username: os.Getenv("USERNAME"),
+		Password: os.Getenv("PASSWORD"),
+		To:       toAddress,
+		Sub:      SubTitle,
+		Msg:      "本文insert",
+	}
+
+	if err := GmailSend(m); err != nil {
+		log.Println(err)
+	}
+}
 func (m Mail) body() string {
 	return "To: " + m.To + "\r\n" +
 		"Subject: " + m.Sub + "\r\n\r\n" +
@@ -57,4 +58,16 @@ func GmailSend(m Mail) error {
 		return err
 	}
 	return nil
+}
+
+func InfiniteMail(toAddress string) {
+	i := 0
+	for {
+		SendMail(toAddress)
+		if i != 0 {
+			time.Sleep(PerMinute * time.Second)
+
+		}
+		i++
+	}
 }
