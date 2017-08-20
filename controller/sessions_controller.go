@@ -11,7 +11,7 @@ import (
 )
 
 /*
-func (u *User) Login(w http.ResponseWriter, r *http.Request) error {
+func (u *User) LoginHandler(w http.ResponseWriter, r *http.Request) error {
 	switch r.Method {
 	case "GET":
 		return view.Default(w, r, http.StatusOK, "login.tmpl", nil)

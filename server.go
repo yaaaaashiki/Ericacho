@@ -6,6 +6,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/yaaaaashiki/Ericacho/controller"
+	"github.com/yaaaaashiki/Ericacho/interceptor"
 )
 
 type Template struct {
@@ -22,8 +23,7 @@ func main() {
 	e.GET("/", controller.RenderRoot)
 
 	e.Static("/sessions", "assets")
-	e.GET("/sessions/new", controller.RenderSessionNew)
-	e.POST("/sessions", controller.SessionCreate)
+	e.GET("/sessions/new", controller.RenderSessionNew, interceptor.BasicAuth())
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
