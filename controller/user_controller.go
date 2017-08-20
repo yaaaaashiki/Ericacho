@@ -7,6 +7,7 @@ import (
 
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
+	"github.com/yaaaaashiki/Ericacho/crypto"
 	"github.com/yaaaaashiki/Ericacho/model"
 )
 
@@ -17,10 +18,10 @@ type User struct {
 func (u *User) CreateUser(c echo.Context) error {
 	user := &model.User{}
 
-	user.Salt = "hoge"
+	user.Salt = crypto.Salt(100)
+	user.Salted = crypto.Stretch(c.FormValue("password"), user.Salt)
 	user.Name = "yashikihogehogeyashiki"
 	user.Email = c.FormValue("email")
-	user.Salted = c.FormValue("password")
 	user.Created, user.Updated = time.Now(), time.Now()
 
 	fmt.Println(user)
