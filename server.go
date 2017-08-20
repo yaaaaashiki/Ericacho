@@ -14,10 +14,10 @@ type Template struct {
 func main() {
 	e := echo.New()
 
-	//http.Handle("/assets/", http.StripPrefix("/assets/", http.FileServer(http.Dir("assets"))))
-
+	e.Static("/", "assets")
+	e.Static("/", "assets")
 	e.GET("/", handler.RenderRoot)
 	e.GET("/sessions/new", handler.RenderSessionNew)
-	//e.Static("/", "assets/stylesheets")
+
 	e.Logger.Fatal(e.Start(":8080"))
 }
