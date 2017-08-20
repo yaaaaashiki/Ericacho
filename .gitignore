@@ -236,3 +236,5 @@ temp.html
 vendor/pdfminer3k-master
 
 *.idea
+
+conf/app.conf
