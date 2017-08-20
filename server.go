@@ -15,8 +15,8 @@ func main() {
 	e := echo.New()
 
 	e.Static("/", "assets")
-	e.Static("/", "assets")
 	e.GET("/", handler.RenderRoot)
+	e.Static("/sessions", "assets")
 	e.GET("/sessions/new", handler.RenderSessionNew)
 
 	e.Logger.Fatal(e.Start(":8080"))
