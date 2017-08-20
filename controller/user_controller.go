@@ -1,11 +1,13 @@
 package controller
 
 import (
+	"fmt"
 	"log"
 	"net/http"
 
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
+	"github.com/suzuken/wiki/sessions"
 	"github.com/yaaaaashiki/Ericacho/crypto"
 	"github.com/yaaaaashiki/Ericacho/model"
 	"github.com/yaaaaashiki/Ericacho/view"
@@ -44,7 +46,16 @@ func (u *User) NewUser(c echo.Context) error {
 }
 
 func (u *User) Index(c echo.Context) error {
-	emptyData := map[string]interface{}{}
+	//sess, _ := sessions.Get(r, "user")
+	//fmt.Println(sess.Values["name"])
+
+	r := c.Request()
+	sess, _ := sessions.Get(r, "user")
+	fmt.Println(sess.Values["name"])
+
+	emptyData := map[string]interface{}{
+		"user": sess.Values["name"],
+	}
 
 	return view.Slim(c, http.StatusOK, "users/index.slim", emptyData)
 }

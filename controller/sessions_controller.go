@@ -3,9 +3,11 @@ package controller
 import (
 	"errors"
 	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/labstack/echo"
+	"github.com/suzuken/wiki/sessions"
 	"github.com/yaaaaashiki/Ericacho/crypto"
 	"github.com/yaaaaashiki/Ericacho/db"
 	"github.com/yaaaaashiki/Ericacho/model"
@@ -31,12 +33,19 @@ func (u *User) CreateSession(c echo.Context) error {
 		return errors.New("Failed login, confirm email and password again")
 	}
 
+	r := c.Request()
+	w := c.Response().Writer
+
+	sess, _ := sessions.Get(r, "user")
+	sess.Values["id"] = isLoginUser.Id
+	sess.Values["email"] = isLoginUser.Email
+	sess.Values["name"] = isLoginUser.Name
+	if err := sessions.Save(r, w, sess); err != nil {
+		log.Printf("session can't save: %s", err)
+		return err
+	}
+
 	u.Index(c)
-
-	//user.Salted = crypto.Stretch(c.FormValue("password"), user.Salt)
-	//user.Created, user.Updated = time.Now(), time.Now()
-
-	//user.Create(u.DB)
 
 	return nil
 }

@@ -3,7 +3,9 @@ package main
 import (
 	"html/template"
 
+	"github.com/gorilla/sessions"
 	"github.com/labstack/echo"
+	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/middleware"
 	"github.com/yaaaaashiki/Ericacho/controller"
 	"github.com/yaaaaashiki/Ericacho/db"
@@ -24,6 +26,7 @@ func main() {
 
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
+	e.Use(session.Middleware(sessions.NewCookieStore([]byte("secret"))))
 
 	e.Static("/", "assets")
 	e.GET("/", controller.RenderRoot)
