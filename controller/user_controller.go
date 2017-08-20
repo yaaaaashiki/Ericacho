@@ -15,11 +15,8 @@ type User struct {
 }
 
 func (u *User) CreateUser(c echo.Context) error {
-	fmt.Println("---------------------------------------------------------------------------------------------")
-
 	user := &model.User{}
 
-	user.Id = 1
 	user.Salt = "hoge"
 	user.Name = "yashikihogehogeyashiki"
 	user.Email = c.FormValue("email")
