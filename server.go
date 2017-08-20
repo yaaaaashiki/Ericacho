@@ -6,6 +6,7 @@ import (
 	"github.com/labstack/echo"
 	"github.com/labstack/echo/middleware"
 	"github.com/yaaaaashiki/Ericacho/controller"
+	"github.com/yaaaaashiki/Ericacho/db"
 	"github.com/yaaaaashiki/Ericacho/interceptor"
 )
 
@@ -16,6 +17,11 @@ type Template struct {
 func main() {
 	e := echo.New()
 
+	db := db.GormConnect()
+	defer db.Close()
+
+	user := &controller.User{DB: db}
+
 	e.Use(middleware.Logger())
 	e.Use(middleware.Recover())
 
@@ -23,7 +29,8 @@ func main() {
 	e.GET("/", controller.RenderRoot)
 
 	e.Static("/sessions", "assets")
-	e.GET("/sessions/new", controller.RenderSessionNew, interceptor.BasicAuth())
+	e.GET("/sessions/new", user.RenderSessionNew, interceptor.BasicAuth())
+	e.POST("/sessions", user.CreateSession)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
