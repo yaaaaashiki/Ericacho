@@ -2,18 +2,20 @@ doctype 5
 html lang="ja"
   head
     meta charset="UTF-8"
-    title 入力フォーム
+    title authorization page
     link rel="stylesheet" type="text/css" href="stylesheets/sessions.css"
     script type="text/javascript" src="javascript/sessions.js"
   body
-    h1 hogehoge
+    h1 basic authorization
     form method=post action=add
-      /.input-email-filed Email
-      input tyep=text name=email
-      /.input-password-field Password 
+      .inputEmailFiled
+        h2 email
+        input tyep=text name=email
+      .inputPasswordField
+        h2 password
         input tyep=text name=password
-      /.submit-field 
-      input type=submit value=submit
+      .submitField
+        input type=submit value=submit
     ul
       - for x in names
         li = x
