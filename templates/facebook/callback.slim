@@ -1,0 +1,22 @@
+doctype 5
+html lang="ja"
+  head
+    meta charset="UTF-8"
+    title facebook callback 
+    link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+  body
+    .container
+      .alert.alert-sucess 
+        h3 facebookアカウント認証成功〜
+        .panel.panel-success
+          .panel-heading
+            h3 ユーザ情報
+          .panel-body
+            ul.list-group 
+              li.list-group-item
+                id : {{.ID}}
+              li.list-group-item
+                name : {{.Name}}
+              li.list-group-item
+                email : {{.Email}}
+        a href="http://localhost:8080/" 戻る 
