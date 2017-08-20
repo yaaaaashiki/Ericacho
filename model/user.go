@@ -13,3 +13,9 @@ func (u *User) FetchAllUsers(db *gorm.DB) ([]User, error) {
 	db.Find(&users)
 	return users, nil
 }
+
+func GetFirstUser(db *gorm.DB) *gorm.DB {
+	user := &User{}
+	firstUser := db.First(user)
+	return firstUser
+}

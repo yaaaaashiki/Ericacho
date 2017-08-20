@@ -31,3 +31,16 @@ func Salt(n int) string {
 	}
 	return string(b)
 }
+
+/*
+func Auth(db *sql.DB, email, password string) (User, error) {
+	u, err := UserByEmail(db, email)
+	if err != nil {
+		return User{}, err
+	}
+	if u.Salted != Stretch(password, u.Salt) {
+		return User{}, ErrPasswordUnmatch
+	}
+	return u, nil
+}
+*/

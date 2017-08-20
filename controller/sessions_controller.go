@@ -1,24 +1,42 @@
 package controller
 
 import (
-	"log"
+	"errors"
+	"fmt"
 	"net/http"
 
 	"github.com/labstack/echo"
+	"github.com/yaaaaashiki/Ericacho/crypto"
+	"github.com/yaaaaashiki/Ericacho/db"
 	"github.com/yaaaaashiki/Ericacho/model"
 	"github.com/yaaaaashiki/Ericacho/view"
 )
 
-func (u *User) RenderSessionNew(c echo.Context) error {
-	var user model.User
-	users, err := user.FetchAllUsers(u.DB)
-	if err != nil {
-		log.Fatal(err)
+func (u *User) NewSession(c echo.Context) error {
+	emptyData := map[string]interface{}{}
+
+	return view.Slim(c, http.StatusOK, "sessions/new.slim", emptyData)
+}
+
+func (u *User) CreateSession(c echo.Context) error {
+	db := db.GormConnect()
+	var isLoginUser model.User
+
+	db.Where("email = ?", c.FormValue("email")).Find(&isLoginUser)
+	fmt.Println(isLoginUser)
+
+	hashPassword := crypto.Stretch(c.FormValue("password"), isLoginUser.Salt)
+	if isLoginUser.Salted != hashPassword {
+		u.NewSession(c)
+		return errors.New("Failed login, confirm email and password again")
 	}
 
-	huge := map[string]interface{}{
-		"names": users,
-	}
+	u.Index(c)
 
-	return view.Slim(c, http.StatusOK, "users/new.slim", huge)
+	//user.Salted = crypto.Stretch(c.FormValue("password"), user.Salt)
+	//user.Created, user.Updated = time.Now(), time.Now()
+
+	//user.Create(u.DB)
+
+	return nil
 }

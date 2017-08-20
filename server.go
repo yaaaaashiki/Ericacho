@@ -29,8 +29,13 @@ func main() {
 	e.GET("/", controller.RenderRoot)
 
 	e.Static("/users", "assets")
-	e.GET("/users/new", user.RenderSessionNew, interceptor.BasicAuth())
+	e.GET("/users/new", user.NewUser, interceptor.BasicAuth())
 	e.POST("/users", user.CreateUser)
+
+	e.Static("/sessions", "assets")
+	e.GET("/sessions", user.Index)
+	e.GET("/sessions/new", user.NewSession)
+	e.POST("/sessions", user.CreateSession)
 
 	//e.GET("/facebook/oauth2", RenderFacebook)
 	//e.GET("/facebook/callback", &controllersFacebook)

@@ -14,7 +14,7 @@ const (
 )
 
 func GormConnect() *gorm.DB {
-	CONNECT := USER + ":" + PASS + "@" + "/" + DBNAME
+	CONNECT := USER + ":" + PASS + "@" + "/" + DBNAME + "?parseTime=true"
 	db, err := gorm.Open(DBMS, CONNECT)
 
 	DBMigrate(db)
