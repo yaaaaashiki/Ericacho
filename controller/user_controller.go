@@ -14,7 +14,7 @@ type User struct {
 	DB *gorm.DB
 }
 
-func (u *User) CreateSession(c echo.Context) error {
+func (u *User) CreateUser(c echo.Context) error {
 	fmt.Println("---------------------------------------------------------------------------------------------")
 
 	user := &model.User{}
@@ -29,13 +29,6 @@ func (u *User) CreateSession(c echo.Context) error {
 	fmt.Println(user)
 	log.Println(user)
 	user.Create(u.DB)
-	/*
-		hogehoge := []string{}
-		hogehoge = append(hogehoge, user.Name)
-		huge := map[string]interface{}{
-			"names": hogehoge,
-		}
-	*/
 
 	u.RenderSessionNew(c)
 	return nil

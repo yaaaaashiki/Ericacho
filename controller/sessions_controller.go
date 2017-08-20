@@ -25,5 +25,5 @@ func (u *User) RenderSessionNew(c echo.Context) error {
 		"names": users,
 	}
 
-	return view.Slim(c, http.StatusOK, "sessions/new.slim", huge)
+	return view.Slim(c, http.StatusOK, "users/new.slim", huge)
 }

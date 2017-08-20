@@ -28,9 +28,9 @@ func main() {
 	e.Static("/", "assets")
 	e.GET("/", controller.RenderRoot)
 
-	e.Static("/sessions", "assets")
-	e.GET("/sessions/new", user.RenderSessionNew, interceptor.BasicAuth())
-	e.POST("/sessions", user.CreateSession)
+	e.Static("/users", "assets")
+	e.GET("/users/new", user.RenderSessionNew, interceptor.BasicAuth())
+	e.POST("/users", user.CreateUser)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
