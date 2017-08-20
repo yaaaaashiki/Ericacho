@@ -7,11 +7,13 @@ import (
 	"time"
 
 	"github.com/joho/godotenv"
+	"github.com/yaaaaashiki/Ericacho/crypto"
 )
 
 const (
-	SubTitle  = "Ericacho からの通知です!!!!!!"
-	PerMinute = 60
+	SubTitle        = "Ericacho からの通知です!!!!!!"
+	PerMinute       = 60
+	CharacterLength = 512
 )
 
 type Mail struct {
@@ -32,26 +34,26 @@ func Env_load() {
 
 func SendMail(toAddress string) {
 	Env_load()
-	m := Mail{
+	m := &Mail{
 		From:     os.Getenv("USERNAME"),
 		Username: os.Getenv("USERNAME"),
 		Password: os.Getenv("PASSWORD"),
 		To:       toAddress,
 		Sub:      SubTitle,
-		Msg:      "本文insert",
+		Msg:      crypto.Salt(CharacterLength),
 	}
 
 	if err := GmailSend(m); err != nil {
 		log.Println(err)
 	}
 }
-func (m Mail) body() string {
+func (m *Mail) body() string {
 	return "To: " + m.To + "\r\n" +
 		"Subject: " + m.Sub + "\r\n\r\n" +
 		m.Msg + "\r\n"
 }
 
-func GmailSend(m Mail) error {
+func GmailSend(m *Mail) error {
 	smtpSvr := os.Getenv("HOSTSERVER")
 	auth := smtp.PlainAuth("", m.Username, m.Password, os.Getenv("HOST"))
 	if err := smtp.SendMail(smtpSvr, auth, m.From, []string{m.To}, []byte(m.body())); err != nil {
@@ -66,7 +68,6 @@ func InfiniteMail(toAddress string) {
 		SendMail(toAddress)
 		if i != 0 {
 			time.Sleep(PerMinute * time.Second)
-
 		}
 		i++
 	}

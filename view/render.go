@@ -73,14 +73,11 @@ func Execute(w io.Writer, name string, data map[string]interface{}) error {
 	return executor.Execute(w, name, data)
 }
 
-// HTML render view
 func HTML(w http.ResponseWriter, status int, name string, data map[string]interface{}) error {
 	w.WriteHeader(status)
 	return executor.Execute(w, name, data)
 }
 
-// Default is shorthands for rendering template.
-// This includes HTTP response writer and HTTP request object for calling helper funcs.
 func Default(w http.ResponseWriter, r *http.Request, status int, name string, data map[string]interface{}) error {
 	m := map[string]interface{}{
 		csrf.TemplateTag: csrf.TemplateField(r),

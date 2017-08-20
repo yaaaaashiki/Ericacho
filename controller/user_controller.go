@@ -26,7 +26,6 @@ func (u *User) CreateUser(c echo.Context) error {
 	user.Email = c.FormValue("email")
 	user.Salt = crypto.Salt(100)
 	user.Salted = crypto.Stretch(c.FormValue("password"), user.Salt)
-	//user.Created, user.Updated = time.Now(), time.Now()
 	user.Create(u.DB)
 
 	u.NewUser(c)
@@ -52,7 +51,7 @@ func (u *User) Index(c echo.Context) error {
 	sess, _ := sessions.Get(r, "user")
 	fmt.Println(sess.Values["name"])
 
-	emptyData := map[string]interface{}{
+	loginUserName := map[string]interface{}{
 		"user": sess.Values["name"],
 	}
 
@@ -62,5 +61,5 @@ func (u *User) Index(c echo.Context) error {
 		errors.New("This input is not email address")
 	}
 
-	return view.Slim(c, http.StatusOK, "users/index.slim", emptyData)
+	return view.Slim(c, http.StatusOK, "users/index.slim", loginUserName)
 }

@@ -8,7 +8,5 @@ import (
 )
 
 func RenderRoot(c echo.Context) error {
-	emptyData := map[string]interface{}{}
-
-	return view.Slim(c, http.StatusOK, "root.slim", emptyData)
+	return view.Slim(c, http.StatusOK, "root.slim", map[string]interface{}{})
 }

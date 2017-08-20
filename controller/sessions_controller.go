@@ -15,9 +15,7 @@ import (
 )
 
 func (u *User) NewSession(c echo.Context) error {
-	emptyData := map[string]interface{}{}
-
-	return view.Slim(c, http.StatusOK, "sessions/new.slim", emptyData)
+	return view.Slim(c, http.StatusOK, "sessions/new.slim", map[string]interface{}{})
 }
 
 func (u *User) CreateSession(c echo.Context) error {
