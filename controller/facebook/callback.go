@@ -3,7 +3,7 @@ package controllersFacebook
 import (
 	"errors"
 
-	"github.com/yaaaaashiki/Ericacho/facebook"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/facebook"
 
 	"fmt"
 

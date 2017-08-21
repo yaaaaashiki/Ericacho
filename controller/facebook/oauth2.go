@@ -3,8 +3,8 @@ package controllersFacebook
 import (
 	"net/http"
 
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/facebook"
 	"github.com/labstack/echo"
-	"github.com/yaaaaashiki/Ericacho/facebook"
 )
 
 func RenderFacebook(c echo.Context) error {

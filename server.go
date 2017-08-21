@@ -3,13 +3,13 @@ package main
 import (
 	"html/template"
 
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/controller"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/db"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/interceptor"
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/middleware"
-	"github.com/yaaaaashiki/Ericacho/controller"
-	"github.com/yaaaaashiki/Ericacho/db"
-	"github.com/yaaaaashiki/Ericacho/interceptor"
 )
 
 type Template struct {

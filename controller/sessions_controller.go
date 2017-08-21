@@ -6,12 +6,12 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/crypto"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/db"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/model"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/sessions"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/view"
 	"github.com/labstack/echo"
-	"github.com/suzuken/wiki/sessions"
-	"github.com/yaaaaashiki/Ericacho/crypto"
-	"github.com/yaaaaashiki/Ericacho/db"
-	"github.com/yaaaaashiki/Ericacho/model"
-	"github.com/yaaaaashiki/Ericacho/view"
 )
 
 func (u *User) NewSession(c echo.Context) error {

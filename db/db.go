@@ -1,9 +1,9 @@
 package db
 
 import (
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/model"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
-	"github.com/yaaaaashiki/Ericacho/model"
 )
 
 const (

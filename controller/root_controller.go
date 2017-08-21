@@ -3,8 +3,8 @@ package controller
 import (
 	"net/http"
 
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/view"
 	"github.com/labstack/echo"
-	"github.com/yaaaaashiki/Ericacho/view"
 )
 
 func RenderRoot(c echo.Context) error {

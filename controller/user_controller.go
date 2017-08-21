@@ -6,13 +6,13 @@ import (
 	"log"
 	"net/http"
 
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/crypto"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/mail"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/model"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/sessions"
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/view"
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo"
-	"github.com/suzuken/wiki/sessions"
-	"github.com/yaaaaashiki/Ericacho/crypto"
-	"github.com/yaaaaashiki/Ericacho/mail"
-	"github.com/yaaaaashiki/Ericacho/model"
-	"github.com/yaaaaashiki/Ericacho/view"
 )
 
 type User struct {

@@ -6,8 +6,8 @@ import (
 	"os"
 	"time"
 
+	"github.com/VG-Tech-Dojo/treasure2017/mid/yaaaaashiki/crypto"
 	"github.com/joho/godotenv"
-	"github.com/yaaaaashiki/Ericacho/crypto"
 )
 
 const (
