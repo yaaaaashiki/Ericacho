@@ -7,19 +7,19 @@ html lang="ja"
     script type="text/javascript" src="javascript/users.js"
   body
     h1 user creat page
-    a href="http://localhost:8080/sessions/new" ログイン 
+    a href="http://localhost:8080/sessions/new" ログインページへ
     form method=post action="/users"
-      .inputUserNameFiled
-        h2 username 
-        input tyep=text name=username
-      .inputEmailFiled
-        h2 email
-        input tyep=text name=email
-      .inputPasswordField
-        h2 password
-        input tyep=text name=password
-      .submitField
-        input type=submit value=submit
+      div
+        span 
+          span username
+          input tyep=text name=username
+        span
+          span email
+          input tyep=text name=email
+        span
+          span password
+          input tyep=text name=password
+          input type=submit value=submit
     h1 user information 
     ul
       - for x in names
