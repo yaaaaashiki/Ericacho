@@ -1,4 +1,14 @@
-h1 {
-  background-color : blue 
+h1{
+  font-size: 40px;
+  background-color: rgba(255, 96, 0, 0.21);
+  text-align: center;
 }
+
+a{
+  font-size: 25px;
+  padding-left: 520px;
+  padding-right: 450px;
+  text-align: center;
+}
+
 
