@@ -10,6 +10,3 @@ html lang=en
     #container.wrapper
       = yield main
       = yield sub
-      = include inc .Msg
-    = javascript
-      alert('{{.Msg}}');
