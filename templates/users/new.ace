@@ -21,4 +21,6 @@ html lang="ja"
       .submitField
         input type=submit value=submit
     h1 user information 
-      
+      {{range .names}}
+        h4 {{.}}
+      {{end}}
