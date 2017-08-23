@@ -6,7 +6,7 @@ html lang="ja"
     link rel="stylesheet" type="text/css" href="stylesheets/sessions.css"
     script type="text/javascript" src="javascript/sessions.js"
   body
-    h1 user creat page
+    h1 Login page 
     form method=post action="/sessions"
       .inputEmailFiled
         h2 email
