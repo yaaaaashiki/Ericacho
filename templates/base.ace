@@ -1,0 +1,11 @@
+= doctype html
+html lang=en
+  head
+    meta charset=utf-8
+    title EricachoRoot
+    link rel="stylesheet" href="stylesheets/root.css"
+    script type="text/javascript" src="javascript/root.js"
+  body
+    h1 EricachoRootPage
+    a href="http://localhost:8080/users/new" user create page 
+

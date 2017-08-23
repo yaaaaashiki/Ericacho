@@ -29,7 +29,7 @@ func main() {
 	e.Use(session.Middleware(sessions.NewCookieStore([]byte("secret"))))
 
 	e.Static("/", "assets")
-	e.GET("/", controller.RenderRoot)
+	e.GET("/", controller.Root)
 
 	e.Static("/users", "assets")
 	e.GET("/users/new", user.NewUser, interceptor.BasicAuth())
