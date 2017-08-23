@@ -60,7 +60,6 @@ func (u *User) Index(c echo.Context) error {
 	} else {
 		errors.New("This input is not email address")
 	}
-	fmt.Println("--------------------------------------------------")
 
 	return view.Ace(c, http.StatusOK, "users/index", "", loginUserName)
 }
