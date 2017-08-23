@@ -43,7 +43,7 @@ func (u *User) NewUser(c echo.Context) error {
 		"names": users,
 	}
 
-	return view.Slim(c, http.StatusOK, "users/new.slim", usersData)
+	return view.Ace(c, http.StatusOK, "users/new", "", usersData)
 }
 
 func (u *User) Index(c echo.Context) error {
@@ -60,6 +60,7 @@ func (u *User) Index(c echo.Context) error {
 	} else {
 		errors.New("This input is not email address")
 	}
+	fmt.Println("--------------------------------------------------")
 
-	return view.Slim(c, http.StatusOK, "users/index.slim", loginUserName)
+	return view.Ace(c, http.StatusOK, "users/index", "", loginUserName)
 }

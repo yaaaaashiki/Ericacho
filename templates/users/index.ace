@@ -1,12 +1,12 @@
-doctype 5
-html lang="ja"
+= doctype html
+html lang=ja
   head
-    meta charset="UTF-8"
+    meta charset=utf-8
     title session index page 
     link rel="stylesheet" type="text/css" href="stylesheets/sessions.css"
     script type="text/javascript" src="javascript/sessions.js"
   body
-    h2 = user 
+    h2 = {{.user}} 
     h1 さんこんにちは 
     h3 今から毎分単位でメールを送信します。お楽しみください
 

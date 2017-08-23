@@ -15,7 +15,7 @@ import (
 )
 
 func (u *User) NewSession(c echo.Context) error {
-	return view.Slim(c, http.StatusOK, "sessions/new.slim", map[string]interface{}{})
+	return view.Ace(c, http.StatusOK, "sessions/new", "", map[string]interface{}{})
 }
 
 func (u *User) CreateSession(c echo.Context) error {

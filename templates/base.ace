@@ -6,9 +6,6 @@ html lang=en
     link rel="stylesheet" href="stylesheets/root.css"
     script type="text/javascript" src="javascript/root.js"
   body
-    h1 Base {{.Msg}}
-    #container.wrapper
-      = yield main
-      = yield sub
-      = yield hoge
-      = yield yashiki
+    h1 EricachoRootPage
+    a href="http://localhost:8080/users/new" user create page 
+
