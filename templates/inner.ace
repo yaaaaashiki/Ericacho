@@ -3,3 +3,4 @@
 
 = content sub
   h3 Inner Template - Sub : {{.Msg}}
+

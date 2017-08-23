@@ -44,8 +44,6 @@ func Ace(c echo.Context, code int, base, inner string, data map[string]interface
 
 	tmpl, err := ace.Load(base, inner, &ace.Options{
 		DynamicReload: true,
-		DelimLeft:     "<%",
-		DelimRight:    "%>",
 	})
 	if err != nil {
 		return Error(c, err)

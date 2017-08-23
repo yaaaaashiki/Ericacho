@@ -14,5 +14,5 @@ func RenderRoot(c echo.Context) error {
 */
 
 func Root(c echo.Context) error {
-	return view.Ace(c, http.StatusOK, "base", "inner", map[string]interface{}{})
+	return view.Ace(c, http.StatusOK, "base", "inner", map[string]interface{}{"Msg": "Hello Ace"})
 }

@@ -10,3 +10,5 @@ html lang=en
     #container.wrapper
       = yield main
       = yield sub
+    = javascript
+      alert('{{.Msg}}');
