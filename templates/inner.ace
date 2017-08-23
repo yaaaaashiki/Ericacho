@@ -4,3 +4,9 @@
 = content sub
   h3 Inner Template - Sub : {{.Msg}}
 
+= content hoge
+  h3 hogehogehogehoge
+
+= content yashiki
+  h3 yashikiyashiki
+

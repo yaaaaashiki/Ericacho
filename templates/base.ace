@@ -2,13 +2,13 @@
 html lang=en
   head
     meta charset=utf-8
-    title Ace example
-    = css
-      h1 { color: blue; }
+    title EricachoRoot
+    link rel="stylesheet" href="stylesheets/root.css"
+    script type="text/javascript" src="javascript/root.js"
   body
-    h1 Base Template : {{.Msg}}
+    h1 Base {{.Msg}}
     #container.wrapper
       = yield main
       = yield sub
-    = javascript
-      alert('{{.Msg}}');
+      = yield hoge
+      = yield yashiki
