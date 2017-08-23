@@ -12,7 +12,7 @@ import (
 
 const (
 	SubTitle        = "Ericacho からの通知です!!!!!!"
-	PerMinute       = 60
+	PerMinute       = 180
 	CharacterLength = 512
 )
 
