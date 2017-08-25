@@ -2,38 +2,37 @@ package controllersFacebook
 
 import (
 	"errors"
-
-	"github.com/yaaaaashiki/Ericacho/facebook"
-
 	"fmt"
+	"net/http"
+
+	"github.com/labstack/echo"
+	"github.com/yaaaaashiki/Ericacho/facebook/"
+	"github.com/yaaaaashiki/Ericacho/view"
 
 	fb "github.com/huandu/facebook"
 	"golang.org/x/oauth2"
 )
 
-// CallbackRequest コールバックリクエスト
-type CallbackRequest struct {
-	Code  string `form:"code"`
-	State int    `form:"state"`
+func RenderFacebook(c echo.Context) error {
+	fmt.Println("-----------------------------------------------")
+	config := facebook.GetConnect()
+	fmt.Println("-----------------------------------------------")
+	url := config.AuthCodeURL("")
+	c.Redirect(301, url)
+	return nil
 }
 
-// Get コールバックする
-func (c *CallbackController) Get() {
-	request := CallbackRequest{}
-	if err := c.ParseForm(&request); err != nil {
-		panic(err)
-	}
-
-	fmt.Print("hogehogew")
+func Callback(c echo.Context) error {
+	r := c.Request()
 	config := facebook.GetConnect()
 
-	tok, err := config.Exchange(oauth2.NoContext, request.Code)
+	tok, err := config.Exchange(oauth2.NoContext, r.FormValue("code"))
 	if err != nil {
-		panic(err)
+		return errors.New("Cannnot converts an authorization code into a token.")
 	}
 
 	if tok.Valid() == false {
-		panic(errors.New("vaild token"))
+		return errors.New("vaild token")
 	}
 
 	client := config.Client(oauth2.NoContext, tok)
@@ -44,11 +43,14 @@ func (c *CallbackController) Get() {
 
 	res, err := session.Get("/me?fields=id,name,email", nil)
 	if err != nil {
-		panic(err)
+		return errors.New("Cannot returns facebook graph api call result")
 	}
 
-	c.Data["ID"] = res["id"]
-	c.Data["Name"] = res["name"]
-	c.Data["Email"] = res["email"]
-	c.TplName = "facebook/callback.slim"
+	userData := map[string]interface{}{
+		"Id":    res["id"],
+		"Name":  res["name"],
+		"Email": res["email"],
+	}
+
+	return view.Ace(c, http.StatusMovedPermanently, "facebook/callback", "", userData)
 }

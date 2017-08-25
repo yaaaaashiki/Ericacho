@@ -8,6 +8,7 @@ import (
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/middleware"
 	"github.com/yaaaaashiki/Ericacho/controller"
+	"github.com/yaaaaashiki/Ericacho/controller/facebook"
 	"github.com/yaaaaashiki/Ericacho/db"
 	"github.com/yaaaaashiki/Ericacho/interceptor"
 )
@@ -40,8 +41,8 @@ func main() {
 	e.GET("/sessions/new", user.NewSession)
 	e.POST("/sessions", user.CreateSession)
 
-	//e.GET("/facebook/oauth2", RenderFacebook)
-	//e.GET("/facebook/callback", &controllersFacebook)
+	e.GET("/facebook/oauth2", controllersFacebook.RenderFacebook)
+	e.GET("/facebook/callback", controllersFacebook.Callback)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }
