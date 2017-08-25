@@ -2,13 +2,13 @@ package main
 
 import (
 	"html/template"
+	"log"
 
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo"
 	"github.com/labstack/echo-contrib/session"
 	"github.com/labstack/echo/middleware"
 	"github.com/yaaaaashiki/Ericacho/controller"
-	"github.com/yaaaaashiki/Ericacho/controller/facebook"
 	"github.com/yaaaaashiki/Ericacho/db"
 	"github.com/yaaaaashiki/Ericacho/interceptor"
 )
@@ -40,9 +40,9 @@ func main() {
 	e.GET("/sessions", user.Index)
 	e.GET("/sessions/new", user.NewSession)
 	e.POST("/sessions", user.CreateSession)
-
-	e.GET("/facebook/oauth2", controllersFacebook.RenderFacebook)
-	e.GET("/facebook/callback", controllersFacebook.Callback)
+	log.Println("-----------------------------------------------")
+	e.GET("/facebook/oauth2", controller.RenderFacebook)
+	e.GET("/facebook/callback", controller.Callback)
 
 	e.Logger.Fatal(e.Start(":8080"))
 }

@@ -1,12 +1,12 @@
-package controllersFacebook
+package controller
 
 import (
 	"errors"
-	"fmt"
+	"log"
 	"net/http"
 
 	"github.com/labstack/echo"
-	"github.com/yaaaaashiki/Ericacho/facebook/"
+	"github.com/yaaaaashiki/Ericacho/facebook"
 	"github.com/yaaaaashiki/Ericacho/view"
 
 	fb "github.com/huandu/facebook"
@@ -14,12 +14,14 @@ import (
 )
 
 func RenderFacebook(c echo.Context) error {
-	fmt.Println("-----------------------------------------------")
-	config := facebook.GetConnect()
-	fmt.Println("-----------------------------------------------")
-	url := config.AuthCodeURL("")
-	c.Redirect(301, url)
-	return nil
+	log.Println("-----------------------------------------------")
+	/*
+		config := facebook.GetConnect()
+		url := config.AuthCodeURL("")
+		c.Redirect(301, url)
+		return nil
+	*/
+	return view.Ace(c, http.StatusOK, "base", "inner", map[string]interface{}{"Msg": "Hello Ace"})
 }
 
 func Callback(c echo.Context) error {

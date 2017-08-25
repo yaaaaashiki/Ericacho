@@ -1,6 +1,7 @@
 package controller
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -14,5 +15,6 @@ func RenderRoot(c echo.Context) error {
 */
 
 func Root(c echo.Context) error {
+	log.Println("-----------------------------------------------")
 	return view.Ace(c, http.StatusOK, "base", "inner", map[string]interface{}{"Msg": "Hello Ace"})
 }
