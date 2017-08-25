@@ -1,8 +1,10 @@
 package facebook
 
 import (
+	"log"
 	"os"
 
+	"github.com/joho/godotenv"
 	"golang.org/x/oauth2"
 )
 
@@ -12,9 +14,14 @@ const (
 )
 
 func GetConnect() *oauth2.Config {
+	err := godotenv.Load()
+	if err != nil {
+		log.Fatal("Error loading .env file")
+	}
+
 	config := &oauth2.Config{
-		ClientID:     os.Getenv("facebookClientID"),
-		ClientSecret: os.Getenv("facebookClientSecret"),
+		ClientID:     os.Getenv("FacebookClientID"),
+		ClientSecret: os.Getenv("FacebookClientSecret"),
 		Endpoint: oauth2.Endpoint{
 			AuthURL:  authorizeEndpoint,
 			TokenURL: tokenEndpoint,
@@ -22,6 +29,5 @@ func GetConnect() *oauth2.Config {
 		Scopes:      []string{"email"},
 		RedirectURL: "http://localhost:8080/facebook/callback",
 	}
-
 	return config
 }

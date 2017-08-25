@@ -1,7 +1,7 @@
-doctype 5
-html lang="ja"
+= doctype html 
+html lang=ja
   head
-    meta charset="UTF-8"
+    meta charset=utf-8
     title facebook callback 
     link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
   body
@@ -14,7 +14,7 @@ html lang="ja"
           .panel-body
             ul.list-group 
               li.list-group-item
-                id : {{.ID}}
+                id : {{.Id}}
               li.list-group-item
                 name : {{.Name}}
               li.list-group-item
