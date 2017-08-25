@@ -15,13 +15,12 @@ import (
 
 func RenderFacebook(c echo.Context) error {
 	log.Println("-----------------------------------------------")
-	/*
-		config := facebook.GetConnect()
-		url := config.AuthCodeURL("")
-		c.Redirect(301, url)
-		return nil
+	config := facebook.GetConnect()
+	url := config.AuthCodeURL("")
+	c.Redirect(301, url)
+	return nil /*
+		return view.Ace(c, http.StatusOK, "base", "inner", map[string]interface{}{"Msg": "Hello Ace"})
 	*/
-	return view.Ace(c, http.StatusOK, "base", "inner", map[string]interface{}{"Msg": "Hello Ace"})
 }
 
 func Callback(c echo.Context) error {
