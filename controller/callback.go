@@ -2,7 +2,6 @@ package controller
 
 import (
 	"errors"
-	"log"
 	"net/http"
 
 	"github.com/labstack/echo"
@@ -14,14 +13,10 @@ import (
 )
 
 func RenderFacebook(c echo.Context) error {
-	log.Println("-----------------------------------------------")
-	/*
-		config := facebook.GetConnect()
-		url := config.AuthCodeURL("")
-		c.Redirect(301, url)
-		return nil
-	*/
-	return view.Ace(c, http.StatusOK, "base", "inner", map[string]interface{}{"Msg": "Hello Ace"})
+	config := facebook.GetConnect()
+	url := config.AuthCodeURL("")
+	c.Redirect(301, url)
+	return nil
 }
 
 func Callback(c echo.Context) error {

@@ -2,7 +2,6 @@ package main
 
 import (
 	"html/template"
-	"log"
 
 	"github.com/gorilla/sessions"
 	"github.com/labstack/echo"
@@ -40,7 +39,7 @@ func main() {
 	e.GET("/sessions", user.Index)
 	e.GET("/sessions/new", user.NewSession)
 	e.POST("/sessions", user.CreateSession)
-	log.Println("-----------------------------------------------")
+
 	e.GET("/facebook/oauth2", controller.RenderFacebook)
 	e.GET("/facebook/callback", controller.Callback)
 
