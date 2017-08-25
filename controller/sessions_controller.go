@@ -2,7 +2,6 @@ package controller
 
 import (
 	"errors"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -23,7 +22,6 @@ func (u *User) CreateSession(c echo.Context) error {
 	var isLoginUser model.User
 
 	db.Where("email = ?", c.FormValue("email")).Find(&isLoginUser)
-	fmt.Println(isLoginUser)
 
 	hashPassword := crypto.Stretch(c.FormValue("password"), isLoginUser.Salt)
 	if isLoginUser.Salted != hashPassword {

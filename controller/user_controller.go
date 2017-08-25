@@ -2,7 +2,6 @@ package controller
 
 import (
 	"errors"
-	"fmt"
 	"log"
 	"net/http"
 
@@ -49,7 +48,6 @@ func (u *User) NewUser(c echo.Context) error {
 func (u *User) Index(c echo.Context) error {
 	r := c.Request()
 	sess, _ := sessions.Get(r, "user")
-	fmt.Println(sess.Values["name"])
 
 	loginUserName := map[string]interface{}{
 		"user": sess.Values["name"],
